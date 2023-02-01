@@ -1,0 +1,145 @@
+<center>
+    <h1 class="mb-5">CRUD BACK END WITH NODE JS</h1>
+</center>
+<div class="table-responsive">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>DATA NGUAWURE GAK UMUM</h4>
+                </div>
+                <div class="col-sm-6">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <h6>GAWE</h6>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Sekolah</th>
+                        <th scope="col">Hobi</th>
+                        <th scope="col">
+                            <center>opsi</center>
+                        </th>
+                    </tr>
+                </thead>
+                <% var nomer=1 %>
+                    <tbody class="table-group-divider">
+                        <% siswa.forEach(user=> { %>
+                            <tr>
+                                <th>
+                                    <%= nomer++ %>
+                                </th>
+                                <td>
+                                    <%= user.nama %>
+                                </td>
+                                <td>
+                                    <%= user.sekolah %>
+                                </td>
+                                <td>
+                                    <%= user.hobi %>
+                                </td>
+                                <td>
+                                    <center>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="/delete/<%= user.id %> " type="button" class="btn btn-danger"><i
+                                                    class="fas fa-trash"></i></a>
+                                            <button type="button" data-bs-toggle="modal"
+                                                data-bs-target="#update<%= user.id %>" class="btn btn-success"><i
+                                                    class="fas fa-edit"></i></button>
+                                        </div>
+                                    </center>
+                                </td>
+                            </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="update<%= user.id %>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                Lek ngisi ojo aneh-aneh
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/post/<%= user.id %> " method="POST">
+                                                <div class="mb-3">
+                                                    <label for="exampleInputEmail1" class="form-label">nama</label>
+                                                    <input type="text" class="form-control" name="nama"
+                                                        value="<%= user.nama %> " id="exampleInputEmail1"
+                                                        aria-describedby="emailHelp" />
+                                                    <div id="emailHelp" class="form-text"></div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleInputPassword1"
+                                                        class="form-label">Sekolah</label>
+                                                    <input type="text" name="sekolah" value="<%= user.sekolah %>"
+                                                        class="form-control" id="exampleInputPassword1" />
+                                                </div>
+                                                <label for="hobi">Hobi</label>
+                                                <input type="text" name="hobi" class="form-control"
+                                                    value="<%= user.hobi %>" id="exampleCheck1" />
+                                                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Lek ngisi ojo aneh-aneh
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/post" method="POST">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">nama</label>
+                        <input type="text" class="form-control" name="nama" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" />
+                        <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Sekolah</label>
+                        <input type="text" name="sekolah" class="form-control" id="exampleInputPassword1" />
+                    </div>
+                    <label for="hobi">Hobi</label>
+                    <input type="text" name="hobi" class="form-control" id="exampleCheck1" />
+                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
